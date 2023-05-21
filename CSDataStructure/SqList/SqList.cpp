@@ -158,11 +158,11 @@ void SqList::Reverse() {
     }
 
     //更优化的结构
-    for (size_t index = 0; index < _size / 2; index++) {
-        temp = _data[index];
-        _data[index] = _data[_size - 1 - index];
-        _data[_size - 1 - index] = temp;
-    }
+//    for (size_t index = 0; index < _size / 2; index++) {
+//        temp = _data[index];
+//        _data[index] = _data[_size - 1 - index];
+//        _data[_size - 1 - index] = temp;
+//    }
 
 }
 
@@ -195,26 +195,73 @@ void SqList::Delete_X2(ElemType x) {
     _size = _size - count;
 }
 
-//解法三
+//TODO 解法三
 void SqList::Delete_X3(ElemType x) {
     assert(_size > 0);
     size_t begin = 0;
     size_t end = _size - 1;
     for (begin, end; begin < end;) {
 
-        if(_data[begin] != x) {
+        if (_data[begin] != x) {
             //begin指向的值若不为x则一定需要保留
             begin++;
-            if(_data[end] == x){
+            if (_data[end] == x) {
                 end--;
                 _size--;
-            }
-            else{
+            } else {
                 _data[begin] = _data[end];
                 end--;
             }
             end--;
+        }
+    }
+}
 
+//删除值在s与t之间的元素
+void SqList::Delete_s_t(size_t s, size_t t) {
+    assert(_size > 0);
+    assert(s < t);
+    size_t index = 0;
+    size_t begin = 0;
+    size_t end = 0;
+    bool begin_flag = false;
+    bool end_flag = false;
+    //获取到s与t之间的值(begin and end)
+    for (index; index < _size; index++) {
+        if (_data[index] > s && _data[index] < t && !begin_flag) {
+            begin = index;
+            begin_flag = true;
+        }
+        if (_data[index] >= t && !end_flag) {
+            end = index;
+            end_flag = true;
+        }
+    }
+    //挪动数据
+    for (index = end, begin; index < _size; index++, begin++) {
+        _data[begin] = _data[index];
+    }
+}
+
+//删除重复元素
+void SqList::Delete_Same() {
+    assert(_size > 0);
+    bool flag = false;
+    ElemType temp = 0;
+    for (size_t index = 0; index < _size; index++) {
+        if (!flag) {
+            temp = _data[index];
+            flag = true;
+            continue;
+        }
+
+        if (_data[index] == temp) {
+            ElemType e;
+            Delete(index, e);
+            index--;
+        } else {
+            flag = false;
+            index--;
         }
     }
 }

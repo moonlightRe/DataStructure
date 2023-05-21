@@ -67,6 +67,21 @@ public:
     void Delete_X1(ElemType x);
     void Delete_X2(ElemType x);
     void Delete_X3(ElemType x);
+
+    /*
+     * ④从-->有序<--顺序表中删除其值在给定值s与t之间（s<t）的所有元素
+     * 若s/t不合理或顺序表为空，则显示错误信息并退出运行
+     * */
+    void Delete_s_t(size_t s, size_t t);
+
+    /*
+     * ⑤
+     * */
+
+    /*
+     * ⑥从有序顺序表中删除所有值重复的元素，使表中所有元素的值均不同
+     * */
+    void Delete_Same();
 };
 
 #endif //SQLIST_SQLIST_H
