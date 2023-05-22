@@ -266,6 +266,25 @@ void SqList::Delete_Same() {
     }
 }
 
+//两个有序顺序表合并为新的有序顺序表（不含重复值）
+bool SqList::Merge(SqList &sqList, SqList &newList) {
+    //检查各个顺序表的有效性
+    if (this->_size == 0 || sqList._size == 0 || newList._size != 0)
+        return false;
+
+    //先插入this顺序表
+    for (size_t this_index = 0; this_index < this->_size; this_index++) {
+        newList.PushBack(this->_data[this_index]);
+    }
+    //再插入sqList顺序表
+    for (size_t sqList_index = 0; sqList_index < sqList.Length(); sqList_index++) {
+        newList.PushBack(sqList.GetElem(sqList_index));
+    }
+    //去重
+    newList.Delete_Same();
+    return true;
+}
+
 
 
 

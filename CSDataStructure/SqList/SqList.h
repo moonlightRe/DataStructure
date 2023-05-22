@@ -82,6 +82,12 @@ public:
      * ⑥从有序顺序表中删除所有值重复的元素，使表中所有元素的值均不同
      * */
     void Delete_Same();
+
+
+    /*
+     * ⑦将两个有序顺序表合并为一个新的有序顺序表，使表中元素的值均不相同
+     * */
+    bool Merge(SqList& sqList, SqList& newList);
 };
 
 #endif //SQLIST_SQLIST_H
