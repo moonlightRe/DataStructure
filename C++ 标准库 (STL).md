@@ -6,7 +6,7 @@
 
 ### 构造函数
 
-```C++
+```cpp
 //default (1)
 //默认构造函数(空串)
 string();
@@ -24,6 +24,7 @@ string (const string& str, size_t pos, size_t len = npos);
 string (const char* s);
 
 //from sequence (5)	
+//该字符数组前n个字符
 string (const char* s, size_t n);
 
 //fill (6)	
@@ -33,8 +34,6 @@ string (size_t n, char c);
 //range (7)	
 template <class InputIterator>  string  (InputIterator first, InputIterator last);
 ```
-
-### 普通成员函数
 
 
 
